@@ -1,3 +1,4 @@
+package src;
 /******************************************************************************
  *  Compilation:  javac Picture.java
  *  Execution:    java Picture filename.jpg
@@ -239,7 +240,7 @@ public final class Picture implements ActionListener {
     private boolean isOriginUpperLeft = true;  // location of origin
     private boolean isVisible = false;         // is the frame visible?
     private boolean isDisposed = false;        // has the window been disposed?
-    private final int width, height;           // width and height
+    private int width, height;           // width and height
 
    /**
      * Creates a {@code width}-by-{@code height} picture, with {@code width} columns
@@ -735,5 +736,30 @@ public final class Picture implements ActionListener {
         System.out.printf("%d-by-%d\n", picture.width(), picture.height());
         picture.show();
     }
+
+    public Picture(BufferedImage input) {
+        if (input == null) throw new IllegalArgumentException("input image is null");
+    
+        int w = input.getWidth();
+        int h = input.getHeight();
+    
+        if (w <= 0 || h <= 0)
+            throw new IllegalArgumentException("BufferedImage must have width > 0 and height > 0");
+    
+        this.image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+    
+        for (int x = 0; x < w; x++) {
+            for (int y = 0; y < h; y++) {
+                this.image.setRGB(x, y, input.getRGB(x, y));
+            }
+        }
+    }
+    
+
+    public BufferedImage getBufferedImage() {
+        return image;
+    }
+    
+    
 
 }

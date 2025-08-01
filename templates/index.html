@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Seam Carver</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="upload-container">
+    <h1>Upload Image to Seam Carve</h1>
+    <form id="upload-form" method="POST" action="/upload" enctype="multipart/form-data">
+      <input type="file" name="image" required><br><br>
+
+      <label for="vertical">Vertical seams to remove:</label>
+      <input type="number" id="vertical" name="vertical" value="50" min="0" max="300" step="1" required><br><br>
+
+      <button type="submit" class="btn primary">Upload & Carve</button>
+    </form>
+
+    <div id="loading-spinner" style="display: none;">
+      <div class="spinner"></div>
+      <p>Processing image...</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('upload-form');
+    const spinner = document.getElementById('loading-spinner');
+    const verticalInput = document.getElementById('vertical');
+
+    form.addEventListener('submit', () => {
+      spinner.style.display = 'block';
+    });
+
+    verticalInput.addEventListener('input', () => {
+      const maxWidth = 500;
+      const value = parseInt(verticalInput.value);
+      if (value > maxWidth) verticalInput.value = maxWidth;
+      if (value < 0 || isNaN(value)) verticalInput.value = 0;
+    });
+  </script>
+</body>
+</html>
