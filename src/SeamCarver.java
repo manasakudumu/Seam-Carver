@@ -149,15 +149,20 @@ public class SeamCarver {
     public void removeHorizontalSeam(int[] seam) {
         if (seam == null) throw new IllegalArgumentException("null seam");
         if (height() <= 1 || seam.length != width())
-            throw new IllegalArgumentException("invalid seam length ");
-        for (int x = 0; x< width(); x++){
-            if (seam[x] < 0 || seam[x] >= height()) throw new IllegalArgumentException("seam out of bounds at column " + x);
-            if (x>0 && Math.abs(seam[x]- seam[x-1]) >1) throw new IllegalArgumentException("seam not connected at column " + x);
-            this.picture = transposePicture(this.picture);
-            removeVerticalSeam(seam);
-            this.picture = transposePicture(this.picture);
-        } 
+            throw new IllegalArgumentException("invalid seam length");
+    
+        for (int x = 0; x < width(); x++) {
+            if (seam[x] < 0 || seam[x] >= height())
+                throw new IllegalArgumentException("seam out of bounds at column " + x);
+            if (x > 0 && Math.abs(seam[x] - seam[x - 1]) > 1)
+                throw new IllegalArgumentException("seam not connected at column " + x);
+        }
+        this.picture = transposePicture(this.picture);
+        removeVerticalSeam(seam);
+        this.picture = transposePicture(this.picture);
     }
+    
+    
 
         
 } 

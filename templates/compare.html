@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Compare Images</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h2>Original vs Seam Carved</h2>
-    <div class="comparison">
-        <div class="image-column">
-            <p>Original ({{ original_width }} × {{ original_height }})</p>
-            <img src="{{ url_for('static', filename='input.png') }}" alt="Original Image">
+    <head>
+        <title>Compare Images</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h2>Original vs Seam Carved</h2>
+        <div class="comparison">
+            <div class="image-column">
+                <p>Original ({{ original_width }} × {{ original_height }})</p>
+                <img src="{{ url_for('static', filename='input.png') }}" alt="Original Image">
+            </div>
+            <div class="image-column">
+                <p>Seam Carved ({{ carved_width }} × {{ carved_height }})</p>
+                <img src="/output/out.png" alt="Carved Image">
+            </div>
         </div>
-        <div class="image-column">
-            <p>Seam Carved ({{ carved_width }} × {{ carved_height }})</p>
-            <img src="/output/out.png" alt="Carved Image">
-        </div>
-    </div>
-    <a class="btn primary" href="/">Try another</a>
-</body>
+        <a class="btn primary" href="/">Try another</a>
+    </body>
 </html>

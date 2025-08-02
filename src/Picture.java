@@ -759,7 +759,5 @@ public final class Picture implements ActionListener {
     public BufferedImage getBufferedImage() {
         return image;
     }
-    
-    
 
 }
